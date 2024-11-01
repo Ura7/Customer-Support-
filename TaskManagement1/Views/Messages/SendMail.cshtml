@@ -1,0 +1,30 @@
+﻿@model Messages;
+@{
+	ViewData["Title"] = "Send Mail";
+}
+
+<h2>Send Mail</h2>
+
+<form method="post"  action="/api/Messages/send">
+	<div class="form-group">
+		<label for="SenderId">Sender Mail</label>
+		<input type="email" id="SenderId" name="SenderId" value="@ViewBag.usermail" class="form-control" readonly />
+	</div>
+	<div class="form-group">
+		<label for="ReceiverId">Receiver Mail</label>
+		@* <input type="email" id="ReceiverId" name="ReceiverId" class="form-control" required/> *@
+		<select asp-for="ReceiverId" asp-items="ViewBag.personel">
+			<option value="">Personel Seç</option>
+		</select>
+	</div>
+	<div class ="form-group">
+		<label for="Sunject">Subject</label>
+		<input type="text" id="Sunject" name="Sunject" class="form-control" required />
+	</div>
+	<div class="form-group">
+		<label for="Body">Body</label>
+		<textarea id="Body" name="Body" class="form-control" rows="4" required></textarea>
+	</div>
+	<button type="submit" class="btn btn-primary">Send</button>
+	
+</form>
